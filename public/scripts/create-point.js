@@ -19,7 +19,7 @@ function getCities(event){
     const ufValue = event.target.value
 
     const indexOfSelectedState = event.target.selectedIndex
-    stateInput.value = event.target.options[indexOfSelectedState]
+    stateInput.value = event.target.options[indexOfSelectedState].text
 
     const url = `https://servicodados.ibge.gov.br/api/v1/localidades/estados/${ufValue}/municipios`
 
@@ -54,7 +54,7 @@ const collectedItems = document.querySelector("input[name=items]")
 
 let selectedItems = []
 
-function handleSelectedItem(){
+function handleSelectedItem(event){
 
     const itemLi = event.target
 
@@ -64,12 +64,15 @@ function handleSelectedItem(){
     const itemId = itemLi.dataset.id
 
     const alreadySelected = selectedItems.findIndex(item => {
-        return item == itemId
+        const itemFound = item == itemId; //retornará true ou false
+        return itemFound;
     })
 
     if (alreadySelected >= 0) {
+        //tirar da seleção
         const filteredItems = selectedItems.filter(item => {
-            return item != itemId
+        const itemIsDifferent = item != itemId
+        return itemIsDifferent;
         })
 
         selectedItems = filteredItems

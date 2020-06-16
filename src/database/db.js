@@ -4,6 +4,7 @@ const sqlite3 = require("sqlite3").verbose()
 //criar o objeto de operacoes no bd
 const db = new sqlite3.Database("./src/database/database.db")
 
+//exportar o banco de dados
 module.exports = db
 
 

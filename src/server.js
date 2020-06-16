@@ -37,8 +37,7 @@ server.post("/save-point", (req, res) => {
             state,
             city,
             items) 
-        VALUES (
-            ?, ?, ?, ?, ?, ?, ?);
+        VALUES (?,?,?,?,?,?,?);
     `
 
     const values = [
@@ -46,17 +45,20 @@ server.post("/save-point", (req, res) => {
         req.body.name,
         req.body.address,
         req.body.address2,
-        req.body.uf,
+        req.body.state,
         req.body.city,
         req.body.items
     ]
 
     function afterInsertData(err){
         if (err) {
-            return console.log(err)
+            console.log(err);
+            return res.send("Erro no cadastro!");
         }
 
-        console.log("Cadastro realizado com sucesso")
+        console.log("Cadastrado com sucesso");
+        console.log(this);
+        console.log(values);
 
         return res.render("create-point.html", { saved: true})
     }
